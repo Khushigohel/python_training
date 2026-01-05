@@ -1,0 +1,39 @@
+list of operator are below
+
+1. (+) operator
+add two nums
+3+3=6
+
+2. (-) operator
+subract two nums
+5-2 = 3
+
+3. (*) operator
+multiply two nums
+4*6=24
+
+4. (/) operator
+divide two number
+10/5 =2.0
+
+5. (%) operator
+Gives remainder of division
+3 % 2 = 1
+
+6. (**) operator
+used to the power
+ 3 ** 3 = 27
+
+7.(^) operator
+this bitwise operator
+it can value is 0 and 1 
+if both operand  value is same it return 0
+else it reurn reutrn 1
+
+for ex:
+a = 5  # it binary value is 101
+b = 3  # it binary value is 001
+
+a ^ b = 6   # it binary value is 110
+
+

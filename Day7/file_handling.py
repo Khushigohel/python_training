@@ -25,3 +25,7 @@ print("Data added successfully.")
 
 os.rename("Day7/file1.txt", "Day7/new_file_task.txt")
 print("File renamed successfully.")
+
+# 5.  Write a program that deletes a text file
+os.remove('Day7/python.txt')
+print("File sucessfully Delete..")

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey,Boolean
 from app.core.database import Base
 from sqlalchemy.orm import relationship
 
@@ -10,3 +10,4 @@ class Task(Base):
     description = Column(String)
     user_id = Column(Integer, ForeignKey("Users.user_id"))
     user = relationship("User", back_populates="tasks")
+    is_deleted = Column(Boolean, default=False)

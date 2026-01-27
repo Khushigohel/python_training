@@ -6,5 +6,5 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Alembic / migrations cache (optional)
+# Alembic / migrations cache
 alembic/versions/*.pyc

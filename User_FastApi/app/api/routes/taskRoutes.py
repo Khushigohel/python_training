@@ -14,27 +14,26 @@ def get_db():
     finally:
         db.close()
     
-@router.post("/",response_model=TaskResponse)
+@router.post("/add-task",response_model=TaskResponse)
 def add_task(task:Taskcreate,user_id:int =  Depends(get_current_user_id), db: Session = Depends(get_db)):
-    return create_task(db,task.title,task.description,user_id)
+    return create_task(db,task,user_id)
 
-@router.get("/",response_model=list[TaskResponse])
+@router.get("/fetch-task",response_model=list[TaskResponse])
 def get_all_task(db:Session = Depends(get_db)):
     return get_tasks(db)
 
-@router.put("/{id}", response_model=TaskResponse)
+@router.put("/update-task/{id}", response_model=TaskResponse)
 def edit_task(task_id: int, task_update: Taskupdate, db: Session = Depends(get_db)):
     task = update_task(
         db, 
         task_id, 
-        title=task_update.title, 
-        description=task_update.description
+        task_update
     )
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return task
 
-@router.delete("/{id}")
+@router.delete("/delete-task/{id}")
 def delete_tasks(id: int, db: Session = Depends(get_db)):
     task = delete_task(db, id)
     if not task:

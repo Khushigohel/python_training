@@ -4,11 +4,12 @@ from enum import Enum
 class TaskStatus(str,Enum):
     pending = "pending"
     completed = "completed"
+    progress = "progress"
+    todo="todo"
 
 class Taskcreate(BaseModel):
     title: str
     description: str | None = None
-    status : TaskStatus = TaskStatus.pending
 
 class Taskupdate(BaseModel):
     title: str

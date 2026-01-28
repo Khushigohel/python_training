@@ -6,8 +6,9 @@ from enum import Enum
 class TaskStatus(Enum):
     pending = "pending"
     completed = "completed"
-
-
+    progress = "progress"
+    todo="todo"
+    
 class Task(Base):
     __tablename__ = "Tasks"
 
@@ -17,4 +18,4 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey("Users.user_id"))
     user = relationship("User", back_populates="tasks")
     is_deleted = Column(Boolean, default=False)
-    status = Column(sqlenum(TaskStatus, name="task_status"),default=TaskStatus.pending, nullable=False)
+    status = Column(sqlenum(TaskStatus, name="task_status"),default=TaskStatus.todo, nullable=False)

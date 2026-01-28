@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.task import Task
+from app.models.task import Task,TaskStatus
 from app.schema.task import Taskcreate,Taskupdate
 from app.models.user import User
 
@@ -8,7 +8,7 @@ def create_task(db: Session, task_create: Taskcreate, current_user: User):
         title=task_create.title,
         description=task_create.description,
         user_id=current_user.user_id,
-        status=task_create.status 
+        status=TaskStatus.todo
     )
     db.add(task)
     db.commit()

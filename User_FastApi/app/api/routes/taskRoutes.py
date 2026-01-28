@@ -4,6 +4,8 @@ from app.crud.tasks import create_task,get_tasks,update_task,delete_task
 from app.schema.task import Taskcreate,TaskResponse,Taskupdate
 from app.core.database import SessionLocal
 from app.api.deps import get_current_user_id
+from app.api.auth import get_current_user
+from app.models.user import User
 
 router=APIRouter(prefix='/tasks',tags=["Tasks"])
 
@@ -15,8 +17,8 @@ def get_db():
         db.close()
     
 @router.post("/add-task",response_model=TaskResponse)
-def add_task(task:Taskcreate,user_id:int =  Depends(get_current_user_id), db: Session = Depends(get_db)):
-    return create_task(db,task,user_id)
+def add_task(task:Taskcreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    return create_task(db,task,current_user)
 
 @router.get("/fetch-task",response_model=list[TaskResponse])
 def get_all_task(db:Session = Depends(get_db)):

@@ -1,12 +1,13 @@
 from sqlalchemy.orm import Session
 from app.models.task import Task
 from app.schema.task import Taskcreate,Taskupdate
+from app.models.user import User
 
-def create_task(db: Session, task_create: Taskcreate, user_id: int):
+def create_task(db: Session, task_create: Taskcreate, current_user: User):
     task = Task(
         title=task_create.title,
         description=task_create.description,
-        user_id=user_id,
+        user_id=current_user.user_id,
         status=task_create.status 
     )
     db.add(task)
